@@ -2,10 +2,10 @@ import pandas as pd
 from pymongo import MongoClient
 
 #필요한 csv 파일
-user_train_df = pd.read_csv('/home/ubuntu/airflow/dags/vod_history_based/user_train_df.csv')
-movie_train_df = pd.read_csv('/home/ubuntu/airflow/dags/vod_history_based/movie_train_df.csv', index_col= 'VOD_ID')
+user_train_df = pd.read_csv('/home/ubuntu/airflow/dags/hellody_vod_history_based_airflow/user_train_df.csv')
+movie_train_df = pd.read_csv('/home/ubuntu/airflow/dags/hellody_vod_history_based_airflow/movie_train_df.csv', index_col= 'VOD_ID')
 movie_train_df.columns = movie_train_df.columns.astype(int)
-popular_vod_df = pd.read_csv('/home/ubuntu/airflow/dags/vod_history_based/popular_hellody_df.csv')
+popular_vod_df = pd.read_csv('/home/ubuntu/airflow/dags/hellody_vod_history_based_airflow/popular_hellody_df.csv')
 popular_vod_list = popular_vod_df.VOD_ID.to_list()
 
 #추천 함수

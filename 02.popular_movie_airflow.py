@@ -62,4 +62,4 @@ for movie_id in top_20_vod_ids:
 popular_hellody_df = pd.DataFrame(popular_list)
 print(popular_hellody_df)
 
-popular_hellody_df.to_csv('/home/ubuntu/airflow/dags/vod_history_based/popular_hellody_df.csv', index = False)
+popular_hellody_df.to_csv('/home/ubuntu/airflow/dags/hellody_vod_history_based_airflow/popular_hellody_df.csv', index = False)

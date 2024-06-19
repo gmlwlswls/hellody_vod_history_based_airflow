@@ -105,4 +105,4 @@ combined_cosine_sim = genre_cosine_sim + crew_cosine_sim + cast_cosine_sim + ove
 combined_cosine_sim_df = pd.DataFrame(combined_cosine_sim, index = movie_feature_df['VOD_ID'], columns= movie_feature_df['VOD_ID'])
 print(combined_cosine_sim_df)
 
-combined_cosine_sim_df.to_csv('/home/ubuntu/airflow/dags/vod_history_based/movie_train_df.csv', index= True)
+combined_cosine_sim_df.to_csv('/home/ubuntu/airflow/dags/hellody_vod_history_based_airflow/movie_train_df.csv', index= True)

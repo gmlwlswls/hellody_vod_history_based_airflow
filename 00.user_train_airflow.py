@@ -102,4 +102,4 @@ user_clusters_series = pd.Series(user_clusters, index=user_movie_df.index)
 # user_train_df에 'cluster' 열 추가
 df['cluster'] = df['user_id'].map(user_clusters_series)
 
-df.to_csv('/home/ubuntu/airflow/dags/vod_history_based/user_train_df.csv', index = False)
+df.to_csv('/home/ubuntu/airflow/dags/hellody_vod_history_based_airflow/user_train_df.csv', index = False)
