@@ -2,10 +2,10 @@ import pandas as pd
 from pymongo import MongoClient
 
 #필요한 csv 파일
-user_train_df = pd.read_csv('./user_train_df.csv')
-movie_train_df = pd.read_csv('./movie_train_df.csv', index_col= 'VOD_ID')
+user_train_df = pd.read_csv('/home/ubuntu/airflow/dags/vod_history_based/user_train_df.csv')
+movie_train_df = pd.read_csv('/home/ubuntu/airflow/dags/vod_history_based/movie_train_df.csv', index_col= 'VOD_ID')
 movie_train_df.columns = movie_train_df.columns.astype(int)
-popular_vod_df = pd.read_csv('./popular_hellody_df.csv')
+popular_vod_df = pd.read_csv('/home/ubuntu/airflow/dags/vod_history_based/popular_hellody_df.csv')
 popular_vod_list = popular_vod_df.VOD_ID.to_list()
 
 #추천 함수
@@ -88,48 +88,3 @@ for user_id, vod_id_list in recommend_for_id.items():
     )
 
 print("MongoDB 업데이트 완료")
-
-# # # mySQL에서 vod_id, poster 가져오기
-# # # mySQL 연결
-# # try:
-# #     conn = mysql.connector.connect(
-# #         host='hellovision.c3gk86ic62pt.ap-northeast-2.rds.amazonaws.com',  # MySQL 서버 주소
-# #         user='root',   # 사용자 이름
-# #         password='12340131',   # 사용자 비밀번호
-# #         database='hellovision'  # 데이터베이스 이름
-# #     )
-# #     print("MySQL 연결 성공")
-# # except mysql.connector.Error as err:
-# #     print(f"MySQL 연결 에러: {err}")
-# #     conn = None
-
-# # client = MongoClient("mongodb://3.37.201.211:27017")
-# # db = client['hellody']
-# # # MongoDB 추천 VOD 리스트 업데이트
-# # for user_id, movie_id_list in recommend_for_id.items():
-# #     for movie_id in movie_id_list:
-# #         if conn:
-# #             try:
-# #                 # 커서 생성
-# #                 cursor = conn.cursor()
-                
-# #                 # SQL 쿼리 작성
-# #                 query = "SELECT TITLE,POSTER,VOD_ID FROM MOVIES WHERE (MOVIE_ID = {})".format(movie_id)
-                
-# #                 # SQL 쿼리 실행
-# #                 cursor.execute(query)
-                
-# #                 # 결과 가져오기
-# #                 results = cursor.fetchall()  # 결과 리스트
-# #                 print("Results:", results) # 튜플(title, poster, vod_id) 의 리스트
-# #             except mysql.connector.Error as err:
-# #                 print(f"SQL 쿼리 실행 에러: {err}")
-# #             except ValueError as val_err:
-# #                 print(f"Value Error: {val_err}")
-# #             finally:
-# #                 if cursor:
-# #                     cursor.close()
-# #                 if conn:
-# #                     conn.close()
-# #         else:
-# #             print("데이터베이스에 연결되지 않았습니다.")
