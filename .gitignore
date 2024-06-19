@@ -1,0 +1,9 @@
+*.docx
+*.ipynb
+*.png
+*.pdf
+.env
+*.sh
+*.csv
+myvenv
+
