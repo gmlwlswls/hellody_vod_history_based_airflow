@@ -68,19 +68,22 @@ recommend_list = db['recommend_list']
 
 # MongoDB 추천 VOD 리스트 업데이트
 for user_id, vod_id_list in recommend_for_id.items():
+    print(user_id)
+    print(vod_id_list)
     result = []
     for vod_id in vod_id_list :
         movie = movies.find_one(
             {'$and' : [
                 {'VOD_ID' : int(vod_id)},
-                {'MOVIE_RATING' : {'ne' : '18'}},
-                {'MOVIE_RATING' : {'ne' : 18}},
+                {'MOVIE_RATING' : {'$ne' : '18'}},
+                {'MOVIE_RATING' : {'$ne' : 18}},
                 {'MOVIE_RATING' : {'$ne' : None}}
             ]},
-            { "_id": 0, "VOD_ID":1,"TITLE": 1, "POSTER": 1 }
+            { "_id": 0, "VOD_ID":1,"TITLE": 1, "POSTER": 1}
         )
-        result.append(movie)
-    # print(result)
+        if movie is not None:
+            result.append(movie)
+            print(movie)
 
     recommend_list.update_one(
               { "user_id": int(user_id) },
