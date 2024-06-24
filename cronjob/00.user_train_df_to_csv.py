@@ -51,7 +51,7 @@ df = read_s3_csv_to_dataframe(bucket, s3_dir)
 # user_train_df = df[df['month'] != 3] #780
 # user_test_df = df[df['month'] == 3] #335 ** index
 
-movie_history_ids = df['vod_id'].to_list()
+movie_history_ids = df['vod_id'].to_list() #1165
 movie_to_vod_id = []
 for movie_id in movie_history_ids:
     movie_list = MOVIES.find_one(
@@ -63,6 +63,7 @@ for movie_id in movie_history_ids:
 
 movie_to_vod_id_df = pd.DataFrame(movie_to_vod_id)
 movie_to_vod_id_list = movie_to_vod_id_df['VOD_ID'].to_list()
+
 df['movie_id_to_vod_id'] = movie_to_vod_id_list
 del df['vod_id']
 df = df[['user_id', 'movie_id_to_vod_id', 'timestamp']]
