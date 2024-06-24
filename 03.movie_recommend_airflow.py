@@ -71,7 +71,12 @@ for user_id, vod_id_list in recommend_for_id.items():
     result = []
     for vod_id in vod_id_list :
         movie = movies.find_one(
-            { "VOD_ID": int(vod_id) },
+            {'$and' : [
+                {'VOD_ID' : int(vod_id)},
+                {'MOVIE_RATING' : {'ne' : '18'}},
+                {'MOVIE_RATING' : {'ne' : 18}},
+                {'MOVIE_RATING' : {'$ne' : None}}
+            ]},
             { "_id": 0, "VOD_ID":1,"TITLE": 1, "POSTER": 1 }
         )
         result.append(movie)
